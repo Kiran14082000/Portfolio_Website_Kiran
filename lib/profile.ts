@@ -14,12 +14,51 @@ export const profile = {
     { value: '+9%', label: 'F1-score improvement', detail: 'Through feature tuning and text preprocessing' }
   ],
   skills: [
-    { group: 'Programming & Data', items: ['Python','SQL','JavaScript','Workflow Automation','Exploratory Data Analysis','Data Cleaning','Data Preprocessing','Data Profiling','Data Validation'] },
-    { group: 'Analytics & BI', items: ['Power BI','DAX','Tableau','SAS','Excel','Data Visualization','Operational Reporting'] },
-    { group: 'Machine Learning & AI', items: ['Scikit-learn','Random Forest','SVM','Classification','Feature Engineering','Model Evaluation','NLP','TF-IDF','Sentiment Analysis','Computer Vision','Generative AI','LLM APIs','Open-Source LLMs','Multi-Agent Systems'] },
-    { group: 'Engineering & Automation', items: ['REST APIs','API Integration','ETL Design','Docker','Git','Jupyter Notebook','VS Code'] },
-    { group: 'Domain', items: ['AML & Financial Transaction Data','LCTR','EFT','STR','Quality Control','Case Management'] }
+    
+    {
+      group: 'Programming & Data',
+      items: [
+        'Python', 'SQL', 'JavaScript', 'pandas', 'NumPy',
+        'Workflow Automation', 'Exploratory Data Analysis',
+        'Data Cleaning', 'Data Preprocessing', 'Data Profiling',
+        'Data Validation'
+      ]
+    },
+    {
+      group: 'Analytics & BI',
+      items: [
+        'Power BI', 'DAX', 'Tableau', 'SAS', 'Excel',
+        'Data Visualization', 'Operational Reporting',
+        'Matplotlib', 'Seaborn', 'Plotly'
+      ]
+    },
+    {
+      group: 'Machine Learning & AI',
+      items: [
+        'Scikit-learn', 'Random Forest', 'Logistic Regression',
+        'K-Nearest Neighbors (KNN)', 'SVM', 'XGBoost',
+        'Classification', 'Feature Engineering', 'Model Evaluation',
+        'NLP', 'TF-IDF', 'Sentiment Analysis', 'spaCy',
+        'Computer Vision', 'Generative AI', 'LLM APIs',
+        'Open-Source LLMs', 'Multi-Agent Systems'
+      ]
+    },
+    {
+      group: 'Engineering & Automation',
+      items: [
+        'REST APIs', 'API Integration', 'ETL Design',
+        'Docker', 'Git', 'Jupyter Notebook', 'VS Code'
+      ]
+    },
+    {
+      group: 'Domain',
+      items: [
+        'AML & Financial Transaction Data', 'LCTR', 'EFT', 'STR',
+        'Quality Control', 'Case Management'
+      ]
+    }
   ],
+
   experience: [
     { role: 'Data Operations Analyst', company: 'AML Shop', location: 'Toronto, ON', period: 'Jul 2026 – Present', bullets: ['Process and validate high-volume, confidential financial transaction data (LCTR, EFT, STR-related, source-of-funds, and payment records) in AML case-management systems.','Run quality-control checks to identify missing or inconsistent records and correct errors, keeping case data reliable for reporting.'] },
     { role: 'Artificial Intelligence & Machine Learning Intern', company: 'Ethosight AI', location: 'Toronto, ON', period: 'Jan 2025 – Aug 2025', bullets: ['Cleaned, validated, and preprocessed operational and AI decision datasets using Python, SQL, and Excel.','Profiled datasets and ran data-quality assessments to surface inconsistencies and improve insight reliability.','Applied machine learning and analytical techniques to evaluate algorithm transparency and decision-making behavior in AI systems.'] },
