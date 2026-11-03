@@ -25,3 +25,51 @@
 .project-visual:has(.project-screenshot) .project-graphic{display:none}
 .project-visual:has(.project-screenshot) .project-number,.project-visual:has(.project-screenshot) .project-date{z-index:2}
 .project-visual:has(.project-screenshot)::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(5,10,18,.12),rgba(5,10,18,.55));pointer-events:none;border-radius:inherit}
+
+/* Project card polish */
+.project-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.project-visual {
+  height: 220px;
+  flex-shrink: 0;
+}
+
+.project-body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+}
+
+.project-body h3 {
+  min-height: 54px;
+}
+
+.project-body > p {
+  min-height: 66px;
+}
+
+.project-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px;
+  margin: 16px 0 4px;
+}
+
+.project-more {
+  margin-top: auto;
+}
+
+@media (max-width: 600px) {
+  .project-visual {
+    height: 200px;
+  }
+
+  .project-body h3,
+  .project-body > p {
+    min-height: 0;
+  }
+}
