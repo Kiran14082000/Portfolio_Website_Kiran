@@ -11,6 +11,7 @@ const fade = { hidden:{opacity:0,y:22}, show:{opacity:1,y:0,transition:{duration
 function SectionTitle({eyebrow,title,sub}:{eyebrow:string;title:string;sub?:string}) { return <motion.div variants={fade} initial="hidden" whileInView="show" viewport={{once:true,amount:.3}} className="section-title"><span className="eyebrow">{eyebrow}</span><h2>{title}</h2>{sub&&<p>{sub}</p>}</motion.div>; }
 
 export default function Home() {
+ const [nameAnimationKey, setNameAnimationKey] = useState(0);
  const [menu,setMenu]=useState(false),[filter,setFilter]=useState('All'),[skillFilter,setSkillFilter]=useState('All'),[skillSearch,setSkillSearch]=useState(''),[repos,setRepos]=useState<Repo[]>([]),[liveProjects,setLiveProjects]=useState<any[]>(profile.projects),[chatOpen,setChatOpen]=useState(false),[messages,setMessages]=useState<ChatMessage[]>([{role:'assistant',content:'Hi! I can help you learn about Kiran’s experience, projects, technical skills and education. What would you like to know?'}]),[question,setQuestion]=useState(''),[sending,setSending]=useState(false),[expanded,setExpanded]=useState<number|null>(null),[contactStatus,setContactStatus]=useState('');
  useEffect(()=>{fetch('/api/github').then(r=>r.json()).then(d=>setRepos(d.repos||[])).catch(()=>{});fetch('/api/projects').then(r=>r.json()).then(d=>{if(Array.isArray(d.projects)&&d.projects.length)setLiveProjects(d.projects)}).catch(()=>{});},[]);
  const categories=useMemo(()=>['All',...Array.from(new Set(liveProjects.map(p=>p.category)))],[liveProjects]);
@@ -28,7 +29,63 @@ export default function Home() {
  const nav=[['About','#about'],['Projects','#projects'],['Experience','#experience'],['Skills','#skills'],['Contact','#contact']];
  return <main>
   <div className="noise"/><header className="nav-wrap"><nav className="nav container"><a className="brand" href="#home"><span className="brand-mark">K<span>.</span></span><span>KIRAN<span className="brand-muted"> / PORTFOLIO</span></span></a><div className="nav-links">{nav.map(([n,h])=><a key={n} href={h}>{n}</a>)}</div><a className="nav-cta" href="#contact">Let’s talk <ArrowUpRight size={15}/></a><button className="mobile-menu" onClick={()=>setMenu(!menu)} aria-label="Toggle navigation">{menu?<X/>:<Menu/>}</button></nav>{menu&&<div className="mobile-nav">{nav.map(([n,h])=><a onClick={()=>setMenu(false)} key={n} href={h}>{n}</a>)}</div>}</header>
-  <section id="home" className="hero container"><div className="hero-grid"><motion.div initial="hidden" animate="show" variants={fade} className="hero-copy"><div className="availability"><span className="pulse"/> OPEN TO DATA & AI/ML OPPORTUNITIES</div><p className="hero-kicker">HELLO, I’M</p><h1>Kiran Gobi<br/><span>Manivannan.</span></h1><div className="hero-role"><span className="role-line"/> Data Analytics <b>×</b> AI / Machine Learning</div><p className="hero-desc">I turn complex data into actionable insights and build practical AI solutions. With experience spanning data analytics, machine learning, NLP, and software engineering, I enjoy transforming ideas into reliable, real-world applications.</p><div className="hero-actions"><a className="btn btn-primary" href="#projects">Explore my work <ArrowUpRight size={17}/></a><a className="btn btn-ghost" href={profile.resume} target="_blank">View resume <ArrowUpRight size={17}/></a></div><div className="socials"><a href={profile.github} target="_blank" aria-label="GitHub"><Github size={18}/></a><a href={profile.linkedin} target="_blank" aria-label="LinkedIn"><Linkedin size={18}/></a><a href={`mailto:${profile.email}`} aria-label="Email"><Mail size={18}/></a><span className="social-location">{profile.location}</span></div></motion.div>
+  <section id="home" className="hero container"><div className="hero-grid"><motion.div initial="hidden" animate="show" variants={fade} className="hero-copy"><div className="availability"><span className="pulse"/> OPEN TO DATA & AI/ML OPPORTUNITIES</div><p className="hero-kicker">HELLO, I’M</p>
+  <motion.h1
+  key={nameAnimationKey}
+  initial="hidden"
+  animate="show"
+  onMouseEnter={() => setNameAnimationKey((key) => key + 1)}
+  onFocus={() => setNameAnimationKey((key) => key + 1)}
+  tabIndex={0}
+  variants={{
+    hidden: {},
+    show: {
+      transition: {
+        staggerChildren: 0.045,
+        delayChildren: 0.2,
+      },
+    },
+  }}
+  aria-label="Kiran Gobi Manivannan"
+>
+  {"Kiran Gobi".split("").map((letter, index) => (
+    <motion.span
+      key={`first-${index}`}
+      aria-hidden="true"
+      style={{ display: "inline-block", whiteSpace: "pre" }}
+      variants={{
+        hidden: { opacity: 0, y: 22 },
+        show: {
+          opacity: 1,
+          y: 0,
+          transition: { duration: 0.4, ease: "easeOut" },
+        },
+      }}
+    >
+      {letter}
+    </motion.span>
+  ))}
+  <br />
+  <span className="animated-name-line">
+    {"Manivannan.".split("").map((letter, index) => (
+      <motion.span
+        key={`last-${index}`}
+        aria-hidden="true"
+        style={{ display: "inline-block", whiteSpace: "pre" }}
+        variants={{
+          hidden: { opacity: 0, y: 22 },
+          show: {
+            opacity: 1,
+            y: 0,
+            transition: { duration: 0.4, ease: "easeOut" },
+          },
+        }}
+      >
+        {letter}
+      </motion.span>
+    ))}
+  </span>
+</motion.h1><div className="hero-role"><span className="role-line"/> Data Analytics <b>×</b> AI / Machine Learning</div><p className="hero-desc">I turn complex data into actionable insights and build practical AI solutions. With experience spanning data analytics, machine learning, NLP, and software engineering, I enjoy transforming ideas into reliable, real-world applications.</p><div className="hero-actions"><a className="btn btn-primary" href="#projects">Explore my work <ArrowUpRight size={17}/></a><a className="btn btn-ghost" href={profile.resume} target="_blank">View resume <ArrowUpRight size={17}/></a></div><div className="socials"><a href={profile.github} target="_blank" aria-label="GitHub"><Github size={18}/></a><a href={profile.linkedin} target="_blank" aria-label="LinkedIn"><Linkedin size={18}/></a><a href={`mailto:${profile.email}`} aria-label="Email"><Mail size={18}/></a><span className="social-location">{profile.location}</span></div></motion.div>
   <motion.div initial={{opacity:0,scale:.92}} animate={{opacity:1,scale:1,transition:{duration:.8,delay:.2}}} className="hero-art"><div className="orbit orbit-one"/><div className="orbit orbit-two"/><div className="core-card"><div className="core-top"><span>FIELD NOTES / 001</span><span className="live-dot"/></div><div className="core-icon"><BrainCircuit size={58} strokeWidth={1.15}/></div><div className="core-name">DATA <span>×</span> INTELLIGENCE</div><div className="core-bottom"><span>PYTHON · SQL · ML · NLP</span><span>TORONTO, CA</span></div></div><div className="float-chip chip-a"><Code2 size={15}/> <span>Build</span></div><div className="float-chip chip-b"><Database size={15}/> <span>Understand</span></div><div className="float-chip chip-c"><Sparkles size={15}/> <span>Discover</span></div><div className="art-caption">CURIOUS BY NATURE. DATA-DRIVEN BY DESIGN.</div></motion.div></div><a className="scroll-cue" href="#about"><span>SCROLL TO EXPLORE</span><ArrowDown size={15}/></a></section>
   <section className="stats container">{profile.highlights.map((h,i)=><motion.div variants={fade} initial="hidden" whileInView="show" viewport={{once:true}} key={h.label} className="stat"><strong>{h.value}</strong><span>{h.label}</span><small>{h.detail}</small></motion.div>)}</section>
   <section id="about" className="section container"><SectionTitle eyebrow="01 / THE PERSON BEHIND THE DATA" title="Curiosity meets computation." sub="A little about how I think, what I build, and where I’m headed."/><div className="about-grid"><motion.div variants={fade} initial="hidden" whileInView="show" viewport={{once:true}} className="about-copy"><p className="lead">I’m a data science and machine learning professional based in <em>Toronto, Canada.</em></p><p>{profile.summary}</p><p>My experience spans data operations, AI/ML experimentation, workflow automation and API integration. I enjoy connecting the analytical side of a problem with the engineering needed to make a solution useful.</p><a className="text-link" href={profile.resume} target="_blank">Read my full resume <ArrowUpRight size={16}/></a></motion.div><div className="about-cards"><div className="mini-card"><span className="mini-icon"><GraduationCap/></span><small>EDUCATION</small><strong>AI & Machine Learning</strong><p>Post Graduate Diploma · Lambton College</p></div><div className="mini-card"><span className="mini-icon"><BriefcaseBusiness/></span><small>EXPERIENCE</small><strong>Data · AI · Engineering</strong><p>AML Shop · Ethosight AI · Cognizant</p></div><div className="mini-card mini-card-wide"><span className="mini-icon"><Zap/></span><small>WHAT DRIVES ME</small><strong>Useful, measurable outcomes</strong><p>Reliable data, thoughtful models, and technology that solves real problems.</p></div></div></div></section>
