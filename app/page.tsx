@@ -25,7 +25,37 @@ export default function Home() {
   .filter(s=>s.items.length>0);
 
  async function sendChat(e:React.FormEvent){e.preventDefault();if(!question.trim()||sending)return;const q=question.trim();setQuestion('');setMessages(m=>[...m,{role:'user',content:q}]);setSending(true);try{const r=await fetch('/api/chat',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages:[...messages,{role:'user',content:q}]})});const d=await r.json();setMessages(m=>[...m,{role:'assistant',content:d.answer||d.error||'I could not respond just now.'}]);}catch{setMessages(m=>[...m,{role:'assistant',content:'The assistant is temporarily unavailable. Please contact Kiran by email.'}]);}finally{setSending(false);}}
- async function submitContact(e:React.FormEvent<HTMLFormElement>){e.preventDefault();setContactStatus('Sending…');const form=new FormData(e.currentTarget);try{const r=await fetch('/api/contact',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(Object.fromEntries(form))});const d=await r.json();setContactStatus(r.ok?(d.message||'Message received. Thank you!'):(d.error||'Could not send. Please email Kiran directly.'));if(r.ok)e.currentTarget.reset();}catch{setContactStatus('Could not send. Please email Kiran directly.');}}
+
+async function submitContact(e: React.FormEvent<HTMLFormElement>) {
+  e.preventDefault();
+
+  const formElement = e.currentTarget;
+  setContactStatus('Sending…');
+
+  const form = new FormData(formElement);
+
+  try {
+    const r = await fetch('/api/contact', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(Object.fromEntries(form)),
+    });
+
+    const d = await r.json();
+
+    if (!r.ok) {
+      setContactStatus(d.error || 'Could not send. Please email Kiran directly.');
+      return;
+    }
+
+    formElement.reset();
+    setContactStatus(d.message || 'Thanks — your message has been sent to Kiran.');
+  } catch {
+    setContactStatus('Could not send. Please email Kiran directly.');
+  }
+}
+
+
  const nav=[['About','#about'],['Projects','#projects'],['Experience','#experience'],['Skills','#skills'],['Contact','#contact']];
  return <main>
   <div className="noise"/><header className="nav-wrap"><nav className="nav container"><a className="brand" href="#home"><span className="brand-mark">K<span>.</span></span><span>KIRAN<span className="brand-muted"> / PORTFOLIO</span></span></a><div className="nav-links">{nav.map(([n,h])=><a key={n} href={h}>{n}</a>)}</div><a className="nav-cta" href="#contact">Let’s talk <ArrowUpRight size={15}/></a><button className="mobile-menu" onClick={()=>setMenu(!menu)} aria-label="Toggle navigation">{menu?<X/>:<Menu/>}</button></nav>{menu&&<div className="mobile-nav">{nav.map(([n,h])=><a onClick={()=>setMenu(false)} key={n} href={h}>{n}</a>)}</div>}</header>
