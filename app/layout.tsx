@@ -1,3 +1,4 @@
+import ScrollProgress from '@/components/scroll-progress';
 import type { Metadata } from 'next';
 import './globals.css';
 import CursorGlow from '@/components/cursor-glow';
@@ -19,6 +20,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
+        <ScrollProgress />
         <CursorGlow />
         {children}
       </body>

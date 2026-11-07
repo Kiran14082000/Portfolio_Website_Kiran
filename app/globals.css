@@ -288,3 +288,506 @@ body {
     transform: none;
   }
 }
+
+/* Full-site animated atmosphere */
+body {
+  isolation: isolate;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: -35%;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse at 25% 30%, rgba(34, 211, 238, 0.25), transparent 38%),
+    radial-gradient(ellipse at 75% 35%, rgba(139, 92, 246, 0.24), transparent 35%),
+    radial-gradient(ellipse at 55% 75%, rgba(59, 130, 246, 0.18), transparent 40%);
+  opacity: 1;
+  transform: translate3d(-2%, -1%, 0);
+  will-change: transform;
+  animation: full-site-atmosphere 12s ease-in-out infinite alternate;
+}
+
+@keyframes full-site-atmosphere {
+  0% {
+    transform: translate3d(-2%, -1%, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(2%, 1%, 0) scale(1.025);
+  }
+  100% {
+    transform: translate3d(-1%, 2%, 0) scale(1.04);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body::before {
+    animation: none;
+    transform: none;
+  }
+}
+
+/* Let the animated atmosphere show through alternate sections */
+.section-alt {
+  background: linear-gradient(
+    180deg,
+    rgba(14, 24, 39, 0.32),
+    rgba(9, 15, 25, 0.42)
+  );
+}
+
+/* Cinematic AI hero enhancements */
+.hero-art::before {
+  content: "";
+  position: absolute;
+  width: 390px;
+  height: 390px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(34, 211, 238, 0.20) 0%,
+    rgba(99, 102, 241, 0.12) 38%,
+    transparent 72%
+  );
+  filter: blur(18px);
+  animation: ai-core-breathe 5s ease-in-out infinite alternate;
+  pointer-events: none;
+}
+
+.orbit-one {
+  animation: orbit-drift-one 28s linear infinite;
+}
+
+.orbit-two {
+  animation: orbit-drift-two 36s linear infinite;
+}
+
+.core-card {
+  overflow: hidden;
+  animation: core-card-float 5s ease-in-out infinite;
+  box-shadow:
+    0 30px 100px rgba(0, 0, 0, 0.45),
+    0 0 35px rgba(99, 230, 226, 0.09),
+    inset 0 1px rgba(255, 255, 255, 0.06);
+}
+
+.core-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(
+    115deg,
+    transparent 25%,
+    rgba(99, 230, 226, 0.09) 45%,
+    rgba(255, 255, 255, 0.13) 50%,
+    transparent 70%
+  );
+  transform: translateX(-120%);
+  animation: card-light-sweep 7s ease-in-out infinite;
+  pointer-events: none;
+}
+
+.core-icon {
+  animation: icon-glow-pulse 3s ease-in-out infinite alternate;
+}
+
+.float-chip {
+  animation: chip-float 4s ease-in-out infinite;
+  border-color: rgba(99, 230, 226, 0.28);
+  box-shadow:
+    0 12px 30px rgba(0, 0, 0, 0.3),
+    0 0 18px rgba(99, 230, 226, 0.07);
+}
+
+.chip-b {
+  animation-delay: -1.4s;
+}
+
+.chip-c {
+  animation-delay: -2.6s;
+}
+
+@keyframes ai-core-breathe {
+  from { transform: scale(0.88); opacity: 0.55; }
+  to { transform: scale(1.12); opacity: 1; }
+}
+
+@keyframes orbit-drift-one {
+  from { transform: rotate(-24deg); }
+  to { transform: rotate(336deg); }
+}
+
+@keyframes orbit-drift-two {
+  from { transform: rotate(43deg); }
+  to { transform: rotate(403deg); }
+}
+
+@keyframes core-card-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-9px); }
+}
+
+@keyframes card-light-sweep {
+  0%, 15% { transform: translateX(-120%); }
+  55%, 100% { transform: translateX(120%); }
+}
+
+@keyframes icon-glow-pulse {
+  from { filter: drop-shadow(0 0 8px rgba(99, 230, 226, 0.25)); }
+  to { filter: drop-shadow(0 0 24px rgba(99, 230, 226, 0.75)); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-art::before,
+  .orbit-one,
+  .orbit-two,
+  .core-card,
+  .core-card::after,
+  .core-icon,
+  .float-chip {
+    animation: none !important;
+  }
+}
+
+/* Premium interactive project cards */
+.project-card {
+  position: relative;
+  isolation: isolate;
+  border-color: rgba(99, 230, 226, 0.18);
+  transition:
+    transform 0.35s cubic-bezier(.22, 1, .36, 1),
+    border-color 0.35s ease,
+    box-shadow 0.35s ease;
+}
+
+.project-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  border-radius: inherit;
+  background: linear-gradient(
+    115deg,
+    transparent 20%,
+    rgba(99, 230, 226, 0.10) 45%,
+    rgba(123, 156, 255, 0.13) 50%,
+    transparent 75%
+  );
+  transform: translateX(-120%);
+  transition: transform 0s;
+}
+
+.project-card:hover {
+  transform: translateY(-8px) scale(1.008);
+  border-color: rgba(99, 230, 226, 0.65);
+  box-shadow:
+    0 22px 55px rgba(0, 0, 0, 0.32),
+    0 0 24px rgba(99, 230, 226, 0.12),
+    0 0 45px rgba(123, 156, 255, 0.08);
+}
+
+.project-card:hover::after {
+  transform: translateX(120%);
+  transition: transform 0.85s ease;
+}
+
+.project-visual {
+  transition: background 0.4s ease;
+}
+
+.project-card:hover .project-visual {
+  background:
+    radial-gradient(ellipse at 50% 45%, rgba(34, 211, 238, 0.22), transparent 68%),
+    linear-gradient(135deg, #14263a, #0b1422);
+}
+
+.project-card .graphic-ring {
+  transition: border-color 0.35s ease;
+}
+
+.project-card:hover .ring-a {
+  border-color: rgba(99, 230, 226, 0.65);
+}
+
+.project-card:hover .ring-b {
+  border-color: rgba(123, 156, 255, 0.75);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .project-card,
+  .project-visual,
+  .project-card .graphic-ring {
+    transition: none !important;
+  }
+
+  .project-card::after {
+    display: none;
+  }
+
+  .project-card:hover {
+    transform: none;
+  }
+}
+
+/* Lightweight drifting particles across the portfolio */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0.42;
+  background-image:
+    radial-gradient(circle, rgba(99, 230, 226, 0.85) 1px, transparent 1.8px),
+    radial-gradient(circle, rgba(123, 156, 255, 0.75) 1px, transparent 2px),
+    radial-gradient(circle, rgba(255, 255, 255, 0.55) 0.7px, transparent 1.6px);
+  background-size: 137px 163px, 193px 211px, 107px 127px;
+  background-position: 0 0, 55px 70px, 30px 45px;
+  animation: particle-drift 32s linear infinite;
+}
+
+@keyframes particle-drift {
+  from {
+    background-position: 0 0, 55px 70px, 30px 45px;
+  }
+  to {
+    background-position: 137px 163px, -138px -141px, 137px -82px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body::after {
+    animation: none;
+  }
+}
+
+/* Scroll-reactive particle motion */
+body::after {
+  animation: none;
+  background-position: 0 0, 55px 70px, 30px 45px;
+  transform: translate3d(0, var(--scroll-particle-direction, 0px), 0);
+  will-change: transform, background-position;
+  transition: opacity 0.25s ease;
+}
+
+
+/* Continuous particle travel follows accumulated scroll movement */
+body::after {
+  transform: translate3d(0, var(--scroll-particle-offset, 0px), 0);
+}
+
+/* Stronger, more visible scroll-reactive particles */
+body::after {
+  opacity: 0.78;
+  background-image:
+    radial-gradient(circle, rgba(99, 230, 226, 0.95) 1.4px, transparent 2.4px),
+    radial-gradient(circle, rgba(123, 156, 255, 0.9) 1.3px, transparent 2.4px),
+    radial-gradient(circle, rgba(255, 255, 255, 0.8) 1px, transparent 2px);
+  background-size: 100px 120px, 145px 165px, 83px 97px;
+}
+
+/* Refined ambient particles for a professional portfolio */
+body::after {
+  opacity: 0.24;
+  background-image:
+    radial-gradient(circle, rgba(99, 230, 226, 0.65) 0.8px, transparent 1.7px),
+    radial-gradient(circle, rgba(123, 156, 255, 0.55) 0.8px, transparent 1.7px),
+    radial-gradient(circle, rgba(255, 255, 255, 0.4) 0.6px, transparent 1.5px);
+  background-size: 137px 163px, 193px 211px, 107px 127px;
+}
+
+/* Seamless transitions between portfolio sections */
+.section-alt {
+  background: linear-gradient(
+    180deg,
+    rgba(14, 24, 39, 0.08) 0%,
+    rgba(14, 24, 39, 0.20) 18%,
+    rgba(9, 15, 25, 0.20) 82%,
+    rgba(9, 15, 25, 0.08) 100%
+  ) !important;
+  border-top: none !important;
+  border-bottom: none !important;
+}
+
+/* Premium depth and contrast for project cards */
+.project-card {
+  background: linear-gradient(
+    145deg,
+    rgba(19, 34, 53, 0.96),
+    rgba(10, 19, 33, 0.96)
+  );
+  border: 1px solid rgba(99, 230, 226, 0.28);
+  box-shadow:
+    0 12px 35px rgba(0, 0, 0, 0.20),
+    0 0 22px rgba(34, 211, 238, 0.045);
+}
+
+.project-card:hover {
+  border-color: rgba(99, 230, 226, 0.8);
+  box-shadow:
+    0 24px 55px rgba(0, 0, 0, 0.35),
+    0 0 28px rgba(34, 211, 238, 0.16),
+    0 0 45px rgba(139, 92, 246, 0.10);
+}
+
+
+/* Seamless section backgrounds with a soft central tint */
+.section-alt {
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    rgba(14, 24, 39, 0.12) 25%,
+    rgba(14, 24, 39, 0.18) 50%,
+    rgba(9, 15, 25, 0.10) 75%,
+    transparent 100%
+  ) !important;
+  border-top: 0 !important;
+  border-bottom: 0 !important;
+}
+
+/* Personalized career journey: Software Engineering → AI/ML → Data Analytics */
+.career-orbit {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  perspective: 900px;
+}
+
+.career-node {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 12px;
+  border: 1px solid rgba(99, 230, 226, 0.28);
+  border-radius: 9px;
+  background: rgba(8, 18, 31, 0.88);
+  color: #dce9f5;
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.24);
+  backdrop-filter: blur(8px);
+  font: 9px var(--mono);
+  letter-spacing: 0.04em;
+  animation: career-node-float 6s ease-in-out infinite;
+}
+
+.career-node svg {
+  width: 15px;
+  height: 15px;
+  flex: 0 0 auto;
+  color: var(--cyan);
+}
+
+.career-node small {
+  display: block;
+  margin-top: 3px;
+  color: #8297ad;
+  font: 8px var(--mono);
+  letter-spacing: 0.02em;
+}
+
+.career-node-engineering {
+  top: 12%;
+  left: 0;
+  animation-delay: -1.5s;
+}
+
+.career-node-aiml {
+  top: 34%;
+  right: -2%;
+  border-color: rgba(123, 156, 255, 0.35);
+  animation-delay: -3.5s;
+}
+
+.career-node-aiml svg {
+  color: var(--blue);
+}
+
+.career-node-analytics {
+  bottom: 17%;
+  left: 3%;
+  animation-delay: -4.5s;
+}
+
+@keyframes career-node-float {
+  0%, 100% { transform: translate3d(0, 0, 0) rotateY(-5deg); }
+  50% { transform: translate3d(0, -7px, 0) rotateY(5deg); }
+}
+
+@media (max-width: 600px) {
+  .career-node {
+    padding: 7px 9px;
+    font-size: 8px;
+  }
+
+  .career-node-engineering { top: 5%; left: 0; }
+  .career-node-aiml { top: 35%; right: -3%; }
+  .career-node-analytics { bottom: 10%; left: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .career-node { animation: none; }
+}
+
+/* Layout refinement: separate career stages from the central card and chips */
+.career-node {
+  padding: 7px 9px;
+  gap: 6px;
+  max-width: 190px;
+  font-size: 8px;
+  background: #0b1524;
+  backdrop-filter: none;
+  z-index: 1;
+}
+
+.career-node small {
+  font-size: 7px;
+}
+
+.career-node-engineering {
+  top: 0;
+  left: 0;
+}
+
+.career-node-aiml {
+  top: 28%;
+  right: -2%;
+}
+
+.career-node-analytics {
+  bottom: 2%;
+  left: 0;
+}
+
+@media (max-width: 600px) {
+  .career-node {
+    max-width: 165px;
+    padding: 6px 7px;
+  }
+
+  .career-node-engineering {
+    top: 0;
+    left: 0;
+  }
+
+  .career-node-aiml {
+    top: 29%;
+    right: 0;
+  }
+
+  .career-node-analytics {
+    bottom: 1%;
+    left: 0;
+  }
+}
+
+ 
+/* Clean, professional hero: remove 3D-style movement */
+.career-orbit { display: none !important; }
+.hero-art canvas { display: none !important; }
+.core-card { animation: none !important; transform: none !important; }
+.float-chip { animation: none !important; }
