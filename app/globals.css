@@ -791,3 +791,146 @@ body::after {
 .hero-art canvas { display: none !important; }
 .core-card { animation: none !important; transform: none !important; }
 .float-chip { animation: none !important; }
+
+/* Premium teal micro-interactions */
+.contact-panel {
+  position: relative;
+  transition: border-color 220ms ease, box-shadow 220ms ease;
+}
+
+.contact-panel:hover {
+  border-color: rgba(99, 230, 226, 0.48);
+  box-shadow:
+    0 0 0 1px rgba(99, 230, 226, 0.05),
+    0 0 32px rgba(99, 230, 226, 0.09),
+    0 18px 55px rgba(0, 0, 0, 0.16);
+}
+
+.contact-form input,
+.contact-form textarea {
+  transition:
+    border-color 180ms ease,
+    box-shadow 180ms ease,
+    background-color 180ms ease;
+}
+
+.contact-form input:hover,
+.contact-form textarea:hover {
+  border-color: rgba(99, 230, 226, 0.35);
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+  border-color: var(--cyan);
+  background: rgba(4, 12, 20, 0.78);
+  box-shadow: 0 0 0 3px rgba(99, 230, 226, 0.10);
+}
+
+.contact-form .btn-primary {
+  transition:
+    transform 200ms ease,
+    box-shadow 200ms ease,
+    background-color 200ms ease;
+}
+
+.contact-form .btn-primary:hover {
+  background: #8ff4ed;
+  transform: translateY(-2px);
+  box-shadow:
+    0 0 0 1px rgba(99, 230, 226, 0.25),
+    0 5px 24px rgba(99, 230, 226, 0.28);
+}
+
+.contact-email,
+.contact-social a {
+  transition: color 180ms ease, text-shadow 180ms ease;
+}
+
+.contact-email:hover,
+.contact-social a:hover {
+  color: #8ff4ed;
+  text-shadow: 0 0 14px rgba(99, 230, 226, 0.28);
+}
+
+.nav-cta,
+.chat-launch {
+  transition:
+    border-color 180ms ease,
+    box-shadow 180ms ease,
+    background-color 180ms ease;
+}
+
+.nav-cta:hover,
+.chat-launch:hover {
+  border-color: var(--cyan);
+  box-shadow: 0 0 20px rgba(99, 230, 226, 0.14);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .contact-panel,
+  .contact-form input,
+  .contact-form textarea,
+  .contact-form .btn-primary,
+  .contact-email,
+  .contact-social a,
+  .nav-cta,
+  .chat-launch {
+    transition: none;
+  }
+}
+
+/* Premium teal contact hover effects */
+.contact-panel {
+  position: relative;
+  transition: border-color 220ms ease, box-shadow 220ms ease;
+}
+
+.contact-panel:hover {
+  border-color: rgba(99, 230, 226, 0.48);
+  box-shadow: 0 0 32px rgba(99, 230, 226, 0.09),
+              0 18px 55px rgba(0, 0, 0, 0.16);
+}
+
+.contact-form input,
+.contact-form textarea {
+  transition: border-color 180ms ease, box-shadow 180ms ease,
+              background-color 180ms ease;
+}
+
+.contact-form input:hover,
+.contact-form textarea:hover {
+  border-color: rgba(99, 230, 226, 0.35);
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+  border-color: var(--cyan);
+  box-shadow: 0 0 0 3px rgba(99, 230, 226, 0.10);
+}
+
+.contact-form .btn-primary:hover {
+  background: #8ff4ed;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 24px rgba(99, 230, 226, 0.28);
+}
+
+.contact-email,
+.contact-social a {
+  transition: color 180ms ease, text-shadow 180ms ease;
+}
+
+.contact-email:hover,
+.contact-social a:hover {
+  color: #8ff4ed;
+  text-shadow: 0 0 14px rgba(99, 230, 226, 0.28);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .contact-panel,
+  .contact-form input,
+  .contact-form textarea,
+  .contact-email,
+  .contact-social a {
+    transition: none;
+  }
+}
