@@ -60,7 +60,7 @@ async function submitContact(e: React.FormEvent<HTMLFormElement>) {
 }
 
 
- const nav=[['About','#about'],['Projects','#projects'],['Experience','#experience'],['Skills','#skills'],['Contact','#contact']];
+ const nav=[['About','#about'],['Projects','#projects'],['Experience','#experience'],['Skills','#skills'],['Data & AI Lab','/lab'],['Contact','#contact']];
  return <main>
   <div className="noise"/><header className="nav-wrap"><nav className="nav container"><a className="brand" href="#home"><span className="brand-mark">K<span>.</span></span><span>KIRAN<span className="brand-muted"> / PORTFOLIO</span></span></a><div className="nav-links">{nav.map(([n,h])=><a key={n} href={h}>{n}</a>)}</div><a className="nav-cta" href="#contact">Let’s talk <ArrowUpRight size={15}/></a><button className="mobile-menu" onClick={()=>setMenu(!menu)} aria-label="Toggle navigation">{menu?<X/>:<Menu/>}</button></nav>{menu&&<div className="mobile-nav">{nav.map(([n,h])=><a onClick={()=>setMenu(false)} key={n} href={h}>{n}</a>)}</div>}</header>
   <section id="home" className="hero container"><div className="hero-grid"><motion.div initial="hidden" animate="show" variants={fade} className="hero-copy"><div className="availability"><span className="pulse"/> OPEN TO DATA & AI/ML OPPORTUNITIES</div><p className="hero-kicker">HELLO, I’M</p>
